@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import AuthForm from './AuthForm.vue';
+import { useAuthStore } from '../../stores/auth.store';
+import router from '../../router';
 
 const route = useRoute()
+const authStore = useAuthStore()
+
+if(authStore.auth.isLogged){
+    router.push({name: 'Home'})
+}
 
 </script>
 

@@ -37,8 +37,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useAuthStore } from '../stores/auth.store';
+import router from '../router';
 
 const leftDrawerOpen = ref(true);
+
+const authStore = useAuthStore()
+
+if(!authStore.auth.isLogged){
+    router.push({name: 'Login'})
+}
 </script>
 
 <style type="text/css">

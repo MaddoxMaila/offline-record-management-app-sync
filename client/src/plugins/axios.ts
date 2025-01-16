@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(response => response, error => {
   if (status === 401 && authStore.auth.isLogged) {
   
     authStore.logout()
-    router.push({ name: 'login' })
+    router.push({ name: 'Login' })
 
     return Promise.reject(error)
   }

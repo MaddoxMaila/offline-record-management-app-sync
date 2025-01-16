@@ -7,7 +7,7 @@ import axiosInstance from "../plugins/axios";
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: {id: "", username: "", email: ""} as User,
-        auth: {token: "", isLogged: false} as Auth
+        auth: {token: "", isLogged: true} as Auth
     }),
     actions: {
         logout(){

@@ -1,10 +1,10 @@
-# Muso API
+# API
 
 ## Tech Stack
  * NodeJS 
  * TypeScript
  * ExpressJS
- * Prisma with PostgreSQL
+ * Prisma with PostgreSQL (Should be but because of PC constraints, im using SQLite but with prisma to replace a DB you just the schema.prisma file to use any client of your liking)
 
 ___
 ```javascript
@@ -13,6 +13,11 @@ ___
  * @implementation Tshepang Maila
  */
 ```
+## Constraints
+
+I had a few constraints PC wise, my personal PC got damaged so I was using my work PC which is locked and cant install softwares as I wish.
+
+I'm locked to Node v22.x because of other projects I'm working on and that doesn't play nice with prisma v6.x, had to downgrade Prisma until i find one that works with my Version of Node, which is Prisma v2.30.2 somehow... But still that raises "End of json input" when submitting forms because it is not fully compatible with Node v22.x
 
 ## Deployments
 
@@ -20,8 +25,6 @@ ___
 ```json
 "scripts": {
     "build": "rm -r dist/* &&  tsc",
-    "clean": "rm -r dist/*",
-    "start": "node dist/server.js",
     "p-init": "prisma init",
     "p-mg": "prisma migrate dev --name init && prisma generate",
     "p-generate": "prisma generate",
@@ -32,11 +35,16 @@ ___
 
 ## How To Build & Run
 
-Would have loved to use docker-compose the two services but because of time was not able to achieve that.
+Would have loved to use docker-compose for the two services but because of time was not able to achieve that.
 
 ### 1 Create Database
 
 - Make sure you have a .env file in the project root
+```
+PORT=2828
+DATABASE_URL=""
+BASE_URL="/api/v1"
+```
 - Then run the following command to spin up a postgres container
 ```
 $ docker-compose up --build
@@ -63,11 +71,3 @@ $ docker-compose up --build
   $ npm run start
   ```
 
-## Test API with Postman
-
-To test the API please look for  ``` Muso API.postman_collection.json ``` in the root directory.
-
-
-I utiliaze two collection variables that are need by subsequest requests. namely ```saved_track_id ``` & ```saved_playlist_id ```, They are set after a response has been received from ```Tracks/Create Track``` & ```Playlists/Create Playlist``` requests.
-
-So if you want to test fully and correctly, please do the requests by order they appear.

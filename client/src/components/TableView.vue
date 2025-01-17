@@ -33,8 +33,7 @@ import { defineComponent, onMounted } from 'vue';
 </script>
 
 <template>
-    <!-- <Suspense> -->
-        <QTable
+    <QTable
         title="Records"
         :rows="records"
         :columns="columns"
@@ -43,31 +42,41 @@ import { defineComponent, onMounted } from 'vue';
         row-key="id"
         flat
         bordered
-      >
-
-      <template v-slot:top-left>
-          <QBtn color="white" text-color="black" :disable="false" label="Add row" @click="false" />
-          <QBtn v-if="records.length !== 0" class="q-ml-sm" :disable="false" color="white" text-color="black" label="Remove row" @click="false" />
-        <QSpace />
+    >
+      <template v-slot:body-cell-actions="props">
+        <q-btn
+          size="sm"
+          color="primary"
+          icon="edit"
+          @click="editRecord(props.row)"
+          flat
+          dense
+        />
+        <q-btn
+          size="sm"
+          color="negative"
+          icon="delete"
+          @click="deleteRecord(props.row.id)"
+          flat
+          dense
+        />
       </template>
+    <!-- <template v-slot:top-right>
+    <QBtn color="white" :disable="loading" text-color="black" label="Edit" @click="save" />
+    <QBtn color="white" :disable="loading" id="Sync" class="q-ml-sm" text-color="black" label="Sync" @click="sync" />
+    <QSpace />
+    </template> -->
 
-      <!-- <template v-slot:top-right>
-        <QBtn color="white" :disable="loading" text-color="black" label="Save" @click="save" />
-        <QBtn color="white" :disable="loading" id="Sync" class="q-ml-sm" text-color="black" label="Sync" @click="sync" />
-        <QSpace />
-      </template> -->
-
-      <!-- <template v-slot:body-cell="props">
-        <QTd :props="props">
-            <QInput
-                v-model.number="props.row[ props.col.name ]"
-                input-class="text-right"
-                type="text"
-                dense
-                borderless
-            />
-        </QTd>
-      </template> -->
-      </QTable>
-    <!-- </Suspense> -->
+    <!-- <template v-slot:body-cell="props">
+    <QTd :props="props">
+        <QInput
+            v-model.number="props.row[ props.col.name ]"
+            input-class="text-right"
+            type="text"
+            dense
+            borderless
+        />
+    </QTd>
+    </template> -->
+    </QTable>
 </template>

@@ -24,6 +24,7 @@ import router from './router'
 import axiosInstance from './plugins/axios'
 
 import SQLite from './db'
+import { fasB } from '@quasar/extras/fontawesome-v6'
 
 const myApp = createApp(App)
 
@@ -51,5 +52,19 @@ myApp.use(createPinia());
 myApp.use(router);
 
 // Assumes you have a <div id="app"></div> in your index.html
-new SQLite().initializeDB()
+const db = new SQLite()
+await db.initializeDB()
+// await db.executeQuery(`
+//   INSERT INTO RecordItem (id, title, description, barcode)
+//   VALUES (?, ?, ?, ?);
+// `, ['fkjfsd', 'Sample Title', 'Sample Description 1', '1234567890']);
+// await db.executeQuery(`
+//     INSERT INTO RecordItem (id, title, description, barcode)
+//     VALUES (?, ?, ?, ?);
+//   `, ['fjkd', 'Sample Title', 'Sample Description 2', '1234567891']);
+//   await db.executeQuery(`
+//     INSERT INTO RecordItem (id, title, description, barcode)
+//     VALUES (?, ?, ?, ?);
+//   `, ['djkfds', 'Sample Title', 'Sample Description 3', '1234567892']);
+
 myApp.mount('#app')

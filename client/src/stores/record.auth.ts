@@ -31,19 +31,7 @@ export const useRecordStore = defineStore('recordItem', {
             await this.getRecords(); // Refresh the records
           },
         async insertRecord() {
-            await db.executeQuery(`
-              INSERT INTO RecordItem (id, title, description, barcode)
-              VALUES (?, ?, ?, ?);
-            `, ['1', 'Sample Title', 'Sample Description 1', '1234567890']);
-            await db.executeQuery(`
-                INSERT INTO RecordItem (id, title, description, barcode)
-                VALUES (?, ?, ?, ?);
-              `, ['2', 'Sample Title', 'Sample Description 2', '1234567891']);
-              await db.executeQuery(`
-                INSERT INTO RecordItem (id, title, description, barcode)
-                VALUES (?, ?, ?, ?);
-              `, ['2', 'Sample Title', 'Sample Description 3', '1234567892']);
-          },
+        },
           async updateRecord() {
             await db.executeQuery(`
               UPDATE RecordItem

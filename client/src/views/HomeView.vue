@@ -48,7 +48,7 @@ export default defineComponent({
                 <QCardSection>
 
                     <QForm @submit.prevent="addNewRecord">
-                        <QInput v-model="newRecord.id" label="ID" required />
+                        <QInput v-model="newRecord.id" label="ID" required :disabled="true"/>
                         <QInput v-model="newRecord.title" label="Title" required />
                         <QInput v-model="newRecord.description" label="Description" required />
                         <QInput v-model="newRecord.barcode" label="Barcode" required />
